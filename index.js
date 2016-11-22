@@ -22,3 +22,8 @@ app.listen(app.get("port"), _ => {
 //use body-parser for handlebars and generating api responses
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json({extended:true}))
+
+//renders the front end layout
+app.get("/", (req,res) =>{
+  res.render("layout", {})
+})

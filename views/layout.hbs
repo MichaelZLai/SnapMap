@@ -3,10 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>SnapMap</title>
+    <link rel="stylesheet" href="./css/styles.css" type="text/css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/map.js"></script>
   </head>
-  <body>
+  <body data-ng-app="snapmap">
 
-    {{{body}}}
-    
+    <main data-ui-view></main>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjrC1aVgXr6C3E3RteJgBRT2oxIVHGkEI&callback=initMap"
+    async defer></script>
   </body>
 </html>
