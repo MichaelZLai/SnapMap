@@ -65,8 +65,7 @@
           //defines the content inside the infowindow
           contents[i] =
             '<div id="content">'+
-              'hello'+
-            // '<img src="mexico[i].url" style="width:400px;height:auto;">'+
+            '<img src="'+mexico[i].url+'" style="width:400px;height:auto;">'+
             '</div>';
           //defines infowindow
           infowindows[i] = new google.maps.InfoWindow({
