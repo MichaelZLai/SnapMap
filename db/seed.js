@@ -1,10 +1,10 @@
 var mongoose      = require("./connection");
 var seedData      = require("./seeds");
 var models        = require("./models");
-var Trip          = mongoose.model("Trip");
+var User          = mongoose.model("User");
 var Marker        = mongoose.model("Marker");
 
-Trip.remove({}).then( _ => {
-  Trip.collection.insert(seedData)
+User.remove({}).then( _ => {
+  User.collection.insert(seedData)
   .then( _ => process.exit())
 }).catch( err => console.log(err))

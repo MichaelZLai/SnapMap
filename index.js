@@ -3,7 +3,7 @@ var app           = express();
 var mongoose      = require("./db/connection");
 var models        = require("./db/models");
 var bodyParser    = require("body-parser");
-var Trip          = mongoose.model("Trip");
+var User          = mongoose.model("User");
 var Marker        = mongoose.model("Marker");
 
 

@@ -1,6 +1,11 @@
 [
   {
-    "tripname": "Mexico",
+    "local": {
+      "firstName": "Michael",
+      "lastName": "Lai",
+      "email": "mike@mike.com",
+      "password": "123123123"
+    },
     "markers": [
       {"imageurl": "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/15068436_10154204506938790_8493317963348433027_o.jpg",
        "long": 23.6345,
