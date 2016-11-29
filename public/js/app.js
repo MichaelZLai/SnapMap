@@ -20,6 +20,22 @@ angular
     "$resource",
     Marker
   ])
+  .controller("register", [
+    "$location",
+    "authentication",
+    registerCtrl
+  ])
+  .controller("login", [
+    "$location",
+    "authentication",
+    loginCtrl
+  ])
+  .controller("navigationCtrl", [
+    "$location",
+    "authentication",
+    navigationCtrl
+  ])
+  .directive("navigation", navigation)
 
   function Router($stateProvider){
     console.log("router working")
@@ -48,9 +64,18 @@ angular
     })
   }
 
+  function User ($resource) {
+  return $resource('http://localhost:5000/users/id/:id', {}, {
+    update: {method: 'put'}
+    })
+  }
 
-
-
+  function Marker ($resource) {
+    return $resource('http://localhost:5000/markers/:id', {}, {
+      update: {method: 'put'},
+      create: {method: 'post'}
+    })
+  }
 
 
   function authentication ($http, $window) {
@@ -66,12 +91,7 @@ angular
       $window.localStorage.removeItem("mean-token")
     };
 
-    return {
-      saveToken : saveToken,
-      getToken : getToken,
-      logout : logout
-    }
-  }
+
 
   var isLoggedIn = function(){
     var token = getToken()
@@ -112,6 +132,17 @@ angular
       saveToken(data.token);
     })
   }
+  return {
+    saveToken : saveToken,
+    getToken : getToken,
+    logout : logout,
+    isLoggedIn : isLoggedIn,
+    currentUser : currentUser,
+    register : register,
+    login : login
+  }
+
+  }
 //logic for register form in register.html
   function registerCtrl($location, authentication) {
     var vm = this;
@@ -129,7 +160,7 @@ angular
           alert(err);
         })
         .then( _ =>{
-          $location.path("profile")
+          $location.path("map")
         })
     }
   }
@@ -149,11 +180,18 @@ angular
         alert(err)
       })
       .then( _ =>{
-        $location.path("profile")
+        $location.path("map")
       })
     }
   }
-
+//navigation directive
+  function navigation() {
+    return {
+      restrict: 'EA',
+      templateUrl: './js/ng-views/navigation.html',
+      controller: 'navigationCtrl as navvm'
+    };
+  }
 //change content based on user status
   function navigationCtrl($location, authentication){
     var vm = this;
