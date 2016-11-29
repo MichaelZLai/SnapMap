@@ -9,6 +9,12 @@ var bodyParser    = require("body-parser");
 var User          = mongoose.model("User");
 var Marker        = mongoose.model("Marker");
 var passport      = require("passport");
+var router        = express.Router();
+var jwt           = require("express-jwt");
+var auth          = jwt({
+                      secret: "MY_SECRET",
+                      userProperty: "payload"
+                    });
 
 require("./config/passport")
 
@@ -76,6 +82,14 @@ app.use(passport.initialize());
 
 //use api routes when path starts with /api
 app.use("/api", routesApi)
+
+//catch unauthorize jwt user
+app.use( (err, req, res, next) =>{
+  if (err.name === "UnauthorizedError") {
+    res.status(401)
+    res.json({"message" : err.name + ": " + err.message})
+  }
+})
 
 //renders the front end layout
 app.get("/", (req,res) =>{
