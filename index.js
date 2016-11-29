@@ -81,7 +81,7 @@ app.use(bodyParser.json({extended:true}))
 app.use(passport.initialize());
 
 //use api routes when path starts with /api
-app.use("/api", routesApi)
+// app.use("/api", routesApi)
 
 //catch unauthorize jwt user
 app.use( (err, req, res, next) =>{

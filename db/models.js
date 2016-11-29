@@ -17,13 +17,12 @@ var UserSchema = new mongoose.Schema({
     unique: true,
     required: true,
     },
-    name: {
-      type: String,
-      required: true,
-      },
-      hash: String,
-      salt: String,
+  name: {
+    type: String,
+    required: true,
     },
+  hash: String,
+  salt: String,
   markers: [MarkerSchema],
 })
 
