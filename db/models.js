@@ -46,7 +46,7 @@ UserSchema.methods.generateJwt = _ =>{
     email: this.email,
     name: this.name,
     exp: parseInt(expiry.getTime() / 1000),
-  }, "MY_SECRET");
+  }, "chapultepec");
 }
 
 //exports the schema models

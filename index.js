@@ -8,18 +8,51 @@ var models        = require("./db/models");
 var bodyParser    = require("body-parser");
 var User          = mongoose.model("User");
 var Marker        = mongoose.model("Marker");
-var passport      = require("passport");
 var router        = express.Router();
 var jwt           = require("express-jwt");
+var passport      = require("passport");
+var LocalStrategy = require("passport-local");
 var auth          = jwt({
-                      secret: "MY_SECRET",
+                      secret: "chapultepec",
                       userProperty: "payload"
                     });
 
-require("./config/passport")
+//use body-parser for handlebars and generating api responses
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json({extended:true}))
+
+//initialize passport before using route middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//passport functionality
+passport.use(new LocalStrategy({
+  usernameField: "email"
+},
+(username, password, done) =>{
+  User.findOne({email: username}, (err, user) =>{
+    if (err) {
+      return done(err)
+    }
+    //Return if user is not found in db
+    if (!user){
+      return done(null, false, {
+        message: "User Not Found"
+      })
+    }
+    //Return if password is wrong
+    if (!user.validPassword(password)){
+      return done(null, false, {
+        message: "Password is Wrong"
+      })
+    }
+    //Return user object, if credentials are correct
+    return done(null, user)
+  })
+}))
 
 //register controller
-module.exports.register = (req, res) =>{
+app.post("/register",(req, res) =>{
   var user = new User()
 
   user.name = req.body.name
@@ -35,9 +68,9 @@ module.exports.register = (req, res) =>{
       "token": token
     })
   })
-}
+})
 //login controller
-module.exports.login = (req, res) =>{
+app.post("/login",(req, res) =>{
   passport.authenticate("local", (err, user, info) =>{
     var token;
 
@@ -59,7 +92,7 @@ module.exports.login = (req, res) =>{
       res.status(401).json(info)
     }
   }) (req,res)
-}
+})
 
 //utilize files in the public folder
 app.use(express.static("public"));
@@ -73,16 +106,6 @@ app.listen(app.get("port"), _ => {
   console.log("Consequences....")
 })
 
-//use body-parser for handlebars and generating api responses
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(bodyParser.json({extended:true}))
-
-//initialize passport before using route middleware
-app.use(passport.initialize());
-
-//use api routes when path starts with /api
-// app.use("/api", routesApi)
-
 //catch unauthorize jwt user
 app.use( (err, req, res, next) =>{
   if (err.name === "UnauthorizedError") {
@@ -94,4 +117,27 @@ app.use( (err, req, res, next) =>{
 //renders the front end layout
 app.get("/", (req,res) =>{
   res.render("layout", {})
+})
+
+//api routes
+app.get('/api', (req, res) => {
+  res.json("SnapMap Time!")
+})
+
+app.get('/api/users/id/:id', (req, res, next) => {
+  User.findOne({_id: req.params.id}).then(user => {
+    res.json(user)
+  })
+})
+
+app.get('/api/users/:email', (req, res, next) => {
+  User.findOne({email: req.params.email}).then(user => {
+    res.json(user)
+  })
+})
+
+app.get('/api/users', (req, res, next) =>{
+  User.find({}).then(users =>{
+    res.json(users)
+  })
 })
