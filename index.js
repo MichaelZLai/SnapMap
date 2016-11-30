@@ -30,30 +30,6 @@ app.post("/register",(req, res) =>{
     })
   })
 })
-//login controller
-app.post("/login",(req, res) =>{
-  passport.authenticate("local", (err, user, info) =>{
-    var token;
-
-    //If Passport throws/catches an error
-    if (err) {
-      res.status(404).json(err)
-      return;
-    }
-
-    //if user is found
-    if (user) {
-      token = user.generateJwt()
-      res.status(200)
-      res.json({
-        "token": token
-      })
-    } else {
-      //if user is not found
-      res.status(401).json(info)
-    }
-  }) (req,res)
-})
 
 //UTILIZE FILES IN PUBLIC FOLDER
 app.use(express.static("public"));
@@ -77,20 +53,32 @@ app.get('/api', (req, res) => {
   res.json("SnapMap Time!")
 })
 
-app.get('/api/users/id/:id', (req, res, next) => {
-  User.findOne({_id: req.params.id}).then(user => {
-    res.json(user)
+app.get('/api/markers', (req, res, next) =>{
+  Marker.find({}).then(markers =>{
+    res.json(markers)
   })
 })
 
-app.get('/api/users/:email', (req, res, next) => {
-  User.findOne({email: req.params.email}).then(user => {
-    res.json(user)
+app.get("/api/markers/:user", (req, res) =>{
+  Marker.findOne({user: req.params.user}).then( marker =>{
+    res.json(marker)
   })
 })
 
-app.get('/api/users', (req, res, next) =>{
-  User.find({}).then(users =>{
-    res.json(users)
+app.post("/api/markers", (req, res)=>{
+  Marker.create(req.body).then( marker =>{
+    res.json(marker)
+  })
+})
+
+app.put("/api/markers/:user", (req, res) =>{
+  Marker.findOneAndUpdate({user: req.params.user}, req.body, {new:true}).then( marker =>{
+    res.json(marker)
+  })
+})
+
+app.delete("/api/markers/:user", (req,res) =>{
+  Marker.findOneAndRemove({user: req.params.user}).then( _ =>{
+    res.json({success: true})
   })
 })

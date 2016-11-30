@@ -1,31 +1,29 @@
 angular
-.module("snapmap", [
-  "ui.router",
-  "ngResource"
-])
-.config([
-  "$stateProvider",
-  Router
-])
-.factory("Marker", [
-  "$resource",
-  Marker
-])
-.controller("addPhoto", [
-  "$location",
-  addPhoto
-])
-.controller("login", [
-  "$location",
-  "authentication",
-  login
-])
-.controller("navigation", [
-  "$location",
-  "authentication",
-  navigation
-])
-.directive("navigate", navigate)
+  .module("snapmap", [
+    "ui.router",
+    "ngResource"
+  ])
+  .config([
+    "$stateProvider",
+    Router
+  ])
+  .factory("Marker", [
+    "$resource",
+    Marker
+  ])
+  .controller("addPhoto", [
+    "$location",
+    addPhoto
+  ])
+  .controller("navigation", [
+    "$location",
+    "authentication",
+    navigation
+  ])
+  .directive("navigate",
+    navigate
+  )
+
 
 function Router($stateProvider){
   console.log("router working")
@@ -38,12 +36,6 @@ function Router($stateProvider){
     url: "/",
     templateUrl: "./js/ng-views/home.html"
   })
-  .state("login", {
-    url: "/login",
-    templateUrl: "./js/ng-views/login.html",
-    controller: "login",
-    controllerAs: "vm"
-  })
   .state("addPhoto", {
     url: "/addPhoto",
     templateUrl: "./js/ng-views/addPhoto.html",
@@ -52,11 +44,6 @@ function Router($stateProvider){
   })
 }
 
-function User ($resource) {
-  return $resource('http://localhost:5000/users/id/:id', {}, {
-    update: {method: 'put'}
-  })
-}
 
 function Marker ($resource) {
   return $resource('http://localhost:5000/markers/:id', {}, {
@@ -66,72 +53,15 @@ function Marker ($resource) {
 }
 
 
-function authentication ($http, $window) {
-  var saveToken = (token) =>{
-    $window.localStorage["mean-token"] = token
-  };
+function authentication () {
 
-  var getToken = _ =>{
-    return $window.localStorage["mean-token"]
-  };
-
-  logout = _ =>{
-    $window.localStorage.removeItem("mean-token")
-  };
-
-  var isLoggedIn = function(){
-    var token = getToken()
-    var payload
-    if (token) {
-      payload = token.split(".")[1]
-      payload = $window.atob(payload)
-      payload = JSON.parse(payload)
-      return payload.exp > Date.now() / 1000
-    } else {
-      return false;
-    }
-  }
-  //get current user's details
-  var currentUser = function(){
-    if (isLoggedIn()) {
-      var token = getToken();
-      var payload = token.split(".")[1]
-      payload = $window.atob(payload)
-      payload = JSON.parse(payload)
-      console.log(payload)
-      console.log(payload.email)
-      return{
-        email : payload.email,
-        name : payload.name
-      };
-    }
-  }
   //calling register api
   addPhoto = (user) =>{
     return $http.post("http://localhost:5000/register", user).success( data =>{
       saveToken(data.token);
     })
   }
-  //calling login api
-  login = (user) =>{
-    return $http.post("http://localhost:5000/login", user).success( data =>{
-      saveToken(data.token);
-    })
-  }
-
-  logout = function() {
-    $window.localStorage.removeItem('mean-token');
-  };
-
-  return {
-    saveToken : saveToken,
-    getToken : getToken,
-    logout : logout,
-    isLoggedIn : isLoggedIn,
-    currentUser : currentUser,
-    register : register,
-    login : login
-  }
+  return hi
 }
 
 //logic for adding a photo form in addPhoto.html
@@ -158,26 +88,7 @@ function addPhoto($location, authentication) {
     })
   }
 }
-//logic for login form in login.html
-function login($location, authentication){
-  var vm = this;
 
-  vm.credentials = {
-    email : "",
-    password : "",
-  }
-
-  vm.onSubmit = _ =>{
-    authentication
-    .login(vm.credentials)
-    .error( (err) =>{
-      alert(err)
-    })
-    .then( (token) =>{
-      $location.path("map")
-    })
-  }
-}
 //navigation directive
 function navigate($location) {
   return {
