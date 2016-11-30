@@ -8,23 +8,23 @@
       <form ng-submit="vm.onSubmit()">
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Enter your name" ng-model="vm.credentials.user">
+          <input type="text" class="form-control" id="name" placeholder="Enter your name" ng-model="vm.photo.user">
         </div>
         <div class="form-group">
           <label for="photourl">Photo Url</label>
-          <input type="text" class="form-control" id="photourl" placeholder="Enter the Photo Url" ng-model="vm.credentials.imageurl">
+          <input type="text" class="form-control" id="photourl" placeholder="Enter the Photo Url" ng-model="vm.photo.imageurl">
         </div>
         <div class="form-group">
           <label for="latitude">Latitude</label>
-          <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude" ng-model="vm.credentials.lat">
+          <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude" ng-model="vm.photo.lat">
         </div>
         <div class="form-group">
           <label for="longitude">Longitude</label>
-          <input type="text" class="form-control" id="longitude" placeholder="Enter Longitude" ng-model="vm.credentials.lng">
+          <input type="text" class="form-control" id="longitude" placeholder="Enter Longitude" ng-model="vm.photo.lng">
         </div>
         <div class="form-group">
           <label for="blurb">Blurb</label>
-          <input type="text" class="form-control" id="blurb" placeholder="Enter a Brief Blurb" ng-model="vm.credentials.desc">
+          <input type="text" class="form-control" id="blurb" placeholder="Enter a Brief Blurb" ng-model="vm.photo.desc">
         </div>
         <button type="submit" class="btn btn-default">Post!</button>
       </form>

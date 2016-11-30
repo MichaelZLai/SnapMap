@@ -58,22 +58,24 @@ function initMap() {
 
 //hardcoded mexico data
 var mexico = [
-  {title: "atrio", lat: 19.434331, lng: -99.140164, url: "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/15068436_10154204506938790_8493317963348433027_o.jpg"},
-  {title: "zocalo", lat: 19.432602, lng: -99.133205, url: "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/14102928_10153961036873790_6301174510094312346_o.jpg"},
-  {title: "el rey statue", lat: 19.426504, lng: -99.137149, url: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14212656_10153999825623790_4612144961473900845_n.jpg?oh=d4eadae932da1bffc813f24af5de79fb&oe=58BB53F0"},
+  {user: "Michael Lai", desc: "atrio", lat: 19.434331, lng: -99.140164, imageurl: "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/15068436_10154204506938790_8493317963348433027_o.jpg"},
+  {user: "Michael Lai", desc: "zocalo", lat: 19.432602, lng: -99.133205, imageurl: "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/14102928_10153961036873790_6301174510094312346_o.jpg"},
+  {user: "Michael Lai", desc: "el rey statue", lat: 19.426504, lng: -99.137149, imageurl: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14212656_10153999825623790_4612144961473900845_n.jpg?oh=d4eadae932da1bffc813f24af5de79fb&oe=58BB53F0"},
 ]
 //function to find and set markers on map
 function setMarkers(map) {
   for (var i = 0; i < mexico.length; i++) {
     //defines the image
     var image = {
-      url: mexico[i].url,
+      url: mexico[i].imageurl,
       scaledSize: new google.maps.Size(40, 40),
     };
     //defines the content inside the infowindow
     contents[i] =
     '<div id="content">'+
-    '<img src="'+mexico[i].url+'" style="width:400px;height:auto;">'+
+    '<img src="'+mexico[i].imageurl+'" style="width:400px;height:auto;">'+
+    '<p>'+mexico[i].desc+'</p>'+
+    '<p>by '+mexico[i].user+'</p>'
     '</div>';
     //defines infowindow
     infowindows[i] = new google.maps.InfoWindow({

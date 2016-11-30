@@ -1,1 +1,30 @@
-
+[
+  {
+    "user": "Michael Lai",
+    "imagurl": "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/15068436_10154204506938790_8493317963348433027_o.jpg",
+    "lat": "19.434331",
+    "lng": "-99.140164",
+    "desc": "El Atrio"
+  },
+  {
+    "user": "Michael Lai",
+    "imagurl": "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/14102928_10153961036873790_6301174510094312346_o.jpg",
+    "lat": "19.432602",
+    "lng": "-99.133205",
+    "desc": "The Zocalo...Awesome"
+  },
+  {
+    "user": "Khoi Fish",
+    "imagurl": "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/14409671_10210600971039757_5258163037873084091_o.jpg",
+    "lat": "38.933868",
+    "lng": "-77.177260",
+    "desc": "Geocent 1st place winners!"
+  },
+  {
+    "user": "Michael Lai",
+    "imagurl": "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/12108296_10153280772193790_3537195449246505508_n.jpg?oh=f0a323bb4a07642b1b0a81581b738806&oe=58B7ABDC",
+    "lat": "43.7731",
+    "lng": "11.2560",
+    "desc": "Cheers to the Duomo!"
+  }
+]

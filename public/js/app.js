@@ -134,20 +134,22 @@ function authentication ($http, $window) {
   }
 }
 
-//logic for register form in register.html
+//logic for adding a photo form in addPhoto.html
 function addPhoto($location, authentication) {
   console.log("Add Photo controller");
   var vm = this;
 
-  vm.credentials = {
-    name : "",
-    email : "",
-    password : "",
+  vm.photo = {
+    user : "",
+    imageurl : "",
+    lat : "",
+    lng : "",
+    desc : ""
   }
 
   vm.onSubmit = () =>{
     authentication
-    .register(vm.credentials)
+    .register(vm.photo)
     .error( err =>{
       alert(err);
     })
