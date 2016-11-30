@@ -7,23 +7,13 @@ angular
   "$stateProvider",
   Router
 ])
-.service("authentication", [
-  "$http",
-  "$window",
-  authentication
-])
-.factory("User", [
-  "$resource",
-  User
-])
 .factory("Marker", [
   "$resource",
   Marker
 ])
-.controller("register", [
+.controller("addPhoto", [
   "$location",
-  "authentication",
-  register
+  addPhoto
 ])
 .controller("login", [
   "$location",
@@ -54,10 +44,10 @@ function Router($stateProvider){
     controller: "login",
     controllerAs: "vm"
   })
-  .state("register", {
-    url: "/register",
-    templateUrl: "./js/ng-views/register.html",
-    controller: "register",
+  .state("addPhoto", {
+    url: "/addPhoto",
+    templateUrl: "./js/ng-views/addPhoto.html",
+    controller: "addPhoto",
     controllerAs: "vm"
   })
 }
@@ -109,7 +99,7 @@ function authentication ($http, $window) {
       payload = $window.atob(payload)
       payload = JSON.parse(payload)
       console.log(payload)
-      console.log(payload.name)
+      console.log(payload.email)
       return{
         email : payload.email,
         name : payload.name
@@ -117,7 +107,7 @@ function authentication ($http, $window) {
     }
   }
   //calling register api
-  register = (user) =>{
+  addPhoto = (user) =>{
     return $http.post("http://localhost:5000/register", user).success( data =>{
       saveToken(data.token);
     })
@@ -145,8 +135,8 @@ function authentication ($http, $window) {
 }
 
 //logic for register form in register.html
-function register($location, authentication) {
-  console.log("register controller");
+function addPhoto($location, authentication) {
+  console.log("Add Photo controller");
   var vm = this;
 
   vm.credentials = {
@@ -187,7 +177,7 @@ function login($location, authentication){
   }
 }
 //navigation directive
-function navigate($location, authentication) {
+function navigate($location) {
   return {
     restrict: 'EA',
     templateUrl: './js/ng-views/navigation.html',

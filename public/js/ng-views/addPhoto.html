@@ -1,0 +1,34 @@
+<navigate></navigate>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Add to the World Wide Collection!</h1>
+      <form ng-submit="vm.onSubmit()">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter your name" ng-model="vm.credentials.user">
+        </div>
+        <div class="form-group">
+          <label for="photourl">Photo Url</label>
+          <input type="text" class="form-control" id="photourl" placeholder="Enter the Photo Url" ng-model="vm.credentials.imageurl">
+        </div>
+        <div class="form-group">
+          <label for="latitude">Latitude</label>
+          <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude" ng-model="vm.credentials.lat">
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input type="text" class="form-control" id="longitude" placeholder="Enter Longitude" ng-model="vm.credentials.lng">
+        </div>
+        <div class="form-group">
+          <label for="blurb">Blurb</label>
+          <input type="text" class="form-control" id="blurb" placeholder="Enter a Brief Blurb" ng-model="vm.credentials.desc">
+        </div>
+        <button type="submit" class="btn btn-default">Post!</button>
+      </form>
+    </div>
+  </div>
+
+</div>
