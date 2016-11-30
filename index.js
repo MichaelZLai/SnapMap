@@ -124,7 +124,7 @@ app.get('/api', (req, res) => {
   res.json("SnapMap Time!")
 })
 
-app.get('/api/users/id/:id', (req, res, next) => {
+app.get('/api/users/:id', (req, res, next) => {
   User.findOne({_id: req.params.id}).then(user => {
     res.json(user)
   })
@@ -134,6 +134,16 @@ app.get('/api/users/:email', (req, res, next) => {
   User.findOne({email: req.params.email}).then(user => {
     res.json(user)
   })
+})
+
+app.get("/api/users/:id/markers", (req, res) =>{
+
+
+  
+})
+
+app.post("/api/users/:id/markers", (req, res) =>{
+
 })
 
 app.get('/api/users', (req, res, next) =>{
