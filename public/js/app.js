@@ -22,10 +22,6 @@ angular
     "Marker",
     mapController
   ])
-  .controller("navigation", [
-    "$location",
-    navigation
-  ])
   .directive("navigate",
     navigate
   )
@@ -68,22 +64,25 @@ function addPhotoController($state, $location, Marker) {
       $state.go("map")
     })
   }
+}
 
+//logic for rendering photos on map
+function mapController($state, Marker){
+  var vm = this;
+  vm.markers = Marker.query()
+    console.log(vm.markers)
+    console.log(vm.markers.length)
+  // setMarkers(vm.markers)
 }
 
 //navigation directive
 function navigate($location) {
   return {
     restrict: 'EA',
-    templateUrl: './js/ng-views/navigation.html',
-    controller: 'navigation',
-    controllerAs: 'navvm'
+    templateUrl: './js/ng-views/navigation.html'
   };
 }
-//change content based on user status
-function navigation($location){
-  var vm = this;
-}
+
 
 
 
@@ -94,7 +93,6 @@ function navigation($location){
 //=========================
 //           MAP
 //=========================
-function mapController ($state, Marker) {
 //global variables
 var markers = []
 var contents = []
@@ -192,5 +190,4 @@ function setMarkers(map) {
       infowindows[this.index].open(map, markers[this.index]);
     });
   }
-}
 }
