@@ -70,9 +70,7 @@ function addPhotoController($state, $location, Marker) {
 function mapController($state, Marker){
   var vm = this;
   vm.markers = Marker.query({}).$promise.then( markerapi =>{
-    initMap()
-    console.log(markerapi)
-    setMarkers(map,markerapi)
+    setMap(markerapi)
     })
   }
 
@@ -84,41 +82,33 @@ function navigate($location) {
   };
 }
 
-//hardcoded mexico data
-var mexico = [
-  {user: "Michael Lai", desc: "atrio", lat: 19.434331, lng: -99.140164, imageurl: "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/15068436_10154204506938790_8493317963348433027_o.jpg"},
-  {user: "Michael Lai", desc: "zocalo", lat: 19.432602, lng: -99.133205, imageurl: "https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/14102928_10153961036873790_6301174510094312346_o.jpg"},
-  {user: "Michael Lai", desc: "el rey statue", lat: 19.426504, lng: -99.137149, imageurl: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14212656_10153999825623790_4612144961473900845_n.jpg?oh=d4eadae932da1bffc813f24af5de79fb&oe=58BB53F0"},
-]
-
 //=========================
 //           MAP
 //=========================
 //global variables
+function setMap(markerapi){
 var markers = []
 var contents = []
 var infowindows = []
-var markerapi = []
+var markerApiArr = markerapi
 var map
 
 
 //function to find and set markers on map
-function setMarkers(map,markerapi) {
-  console.log(markerapi)
-  console.log(markerapi[0])
-  let mexico = markerapi;
-  for (var i = 0; i < mexico.length; i++) {
+function setMarkers(map) {
+  let mexico = markerApiArr;
+  for (var i = 0; i < markerApiArr.length; i++) {
     //defines the image
     var image = {
-      url: mexico[i].imageurl,
+      url: markerApiArr[i].imageurl,
       scaledSize: new google.maps.Size(40, 40),
     };
     //defines the content inside the infowindow
     contents[i] =
     '<div id="content">'+
-    '<img src="'+mexico[i].imageurl+'" style="width:400px;height:auto;">'+
-    '<p>'+mexico[i].desc+'</p>'+
-    '<p>by '+mexico[i].user+'</p>'
+    '<img src="'+markerApiArr[i].imageurl+'" style="width:400px;height:auto;">'+
+    '<p>'+markerApiArr[i].desc+'</p>'+
+    '<p>by '+markerApiArr[i].user+'</p>'
     '</div>';
     //defines infowindow
     infowindows[i] = new google.maps.InfoWindow({
@@ -126,10 +116,10 @@ function setMarkers(map,markerapi) {
     });
     //identifies the marker to be placed
     markers[i] = new google.maps.Marker({
-      position: {lat: mexico[i].lat, lng: mexico[i].lng},
+      position: {lat: markerApiArr[i].lat, lng: markerApiArr[i].lng},
       map: map,
       icon: image,
-      title: mexico[i].title
+      title: markerApiArr[i].title
     });
     //adds index property
     markers[i].index = i
@@ -145,12 +135,11 @@ function initMap() {
   // Defines Map and sets it to Mexico City
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 19.432608, lng: -99.133209},
-    zoom: 4,
+    zoom: 3,
     mapTypeId: "roadmap"
   });
-  console.log(markerapi)
   //sets picture markers on the map
-  setMarkers(map,markerapi);
+  setMarkers(map);
 
   //Allows autocompletion of a search
   function initAutocomplete() {
@@ -190,4 +179,6 @@ function initMap() {
     });
   }
   initAutocomplete()
+}
+initMap()
 }
