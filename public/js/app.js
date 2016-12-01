@@ -82,6 +82,7 @@ function navigate($location) {
   };
 }
 
+
 //=========================
 //           MAP
 //=========================
@@ -96,7 +97,7 @@ var map
 
 //function to find and set markers on map
 function setMarkers(map) {
-  let mexico = markerApiArr;
+
   for (var i = 0; i < markerApiArr.length; i++) {
     //defines the image
     var image = {
@@ -107,7 +108,7 @@ function setMarkers(map) {
     contents[i] =
     '<div id="content">'+
     '<img src="'+markerApiArr[i].imageurl+'" style="width:400px;height:auto;">'+
-    '<p>'+markerApiArr[i].desc+'</p>'+
+    '<h4>'+markerApiArr[i].desc+'</h4>'+
     '<p>by '+markerApiArr[i].user+'</p>'
     '</div>';
     //defines infowindow
