@@ -5,7 +5,7 @@ var jwt         = require("jsonwebtoken");
 //defines marker schema for image
 var MarkerSchema = new mongoose.Schema({
   imageurl: String,
-  long: Number,
+  lng: Number,
   lat: Number,
   desc: String,
   user: String,
