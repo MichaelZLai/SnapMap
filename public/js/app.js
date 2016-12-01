@@ -11,13 +11,14 @@ angular
     "$resource",
     Marker
   ])
-  .controller("addPhoto", [
+  .controller("addPhotoCtrl", [
+    "$state",
     "$location",
-    addPhoto
+    "addPhoto",
+    addPhotoController
   ])
   .controller("navigation", [
     "$location",
-    "authentication",
     navigation
   ])
   .directive("navigate",
@@ -39,54 +40,42 @@ function Router($stateProvider){
   .state("addPhoto", {
     url: "/addPhoto",
     templateUrl: "./js/ng-views/addPhoto.html",
-    controller: "addPhoto",
+    controller: "addPhotoCtrl",
     controllerAs: "vm"
   })
 }
 
-
 function Marker ($resource) {
   return $resource('http://localhost:5000/markers/:id', {}, {
     update: {method: 'put'},
-    create: {method: 'post'}
+    create: {method: 'post'},
+    delete: {method: 'delete'}
   })
 }
 
-
+//UP FOR DELETION
 function authentication () {
 
-  //calling register api
-  addPhoto = (user) =>{
-    return $http.post("http://localhost:5000/register", user).success( data =>{
-      saveToken(data.token);
-    })
-  }
   return hi
 }
 
 //logic for adding a photo form in addPhoto.html
-function addPhoto($location, authentication) {
-  console.log("Add Photo controller");
+function addPhotoController($location, $state, Marker) {
   var vm = this;
 
-  vm.photo = {
-    user : "",
-    imageurl : "",
-    lat : "",
-    lng : "",
-    desc : ""
-  }
+  vm.markers = Markers.query()
+  vm.newMarker = new Marker()
 
-  vm.onSubmit = () =>{
-    authentication
-    .register(vm.photo)
-    .error( err =>{
-      alert(err);
-    })
-    .then( () =>{
+  vm.onSubmitPhoto = _ =>{
+    vm.newMarker.$save()
+      .error( err =>{
+        alert(err)
+      })
+      .then( marker =>{
       $location.path("map")
     })
   }
+
 }
 
 //navigation directive
@@ -99,8 +88,6 @@ function navigate($location) {
   };
 }
 //change content based on user status
-function navigation($location, authentication){
+function navigation($location){
   var vm = this;
-  vm.isLoggedIn = authentication.isLoggedIn();
-  vm.currentUser = authentication.currentUser();
 }

@@ -53,9 +53,16 @@ app.get('/api', (req, res) => {
   res.json("SnapMap Time!")
 })
 
+
 app.get('/api/markers', (req, res, next) =>{
   Marker.find({}).then(markers =>{
     res.json(markers)
+  })
+})
+
+app.get('/api/markers/:id', (req, res, next) => {
+  Marker.findOne({_id: req.params.id}).then(marker => {
+    res.json(marker)
   })
 })
 

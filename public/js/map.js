@@ -1,3 +1,6 @@
+angular
+  .module("map")
+
 //global variables
 var markers = []
 var contents = []
@@ -8,7 +11,7 @@ function initMap() {
   // Defines Map and sets it to Mexico City
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 19.432608, lng: -99.133209},
-    zoom: 14,
+    zoom: 4,
     mapTypeId: "roadmap"
   });
 
