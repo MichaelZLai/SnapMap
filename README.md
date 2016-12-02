@@ -7,6 +7,14 @@ Whether you're a foodie, jet setter, techie, or just love sharing your life thro
 
 ![snapmapexample](./images/snapmapexample.png)
 
+## Installation
+
+```
+git clone git@github.com:MichaelZLai/SnapMap.git
+npm install
+
+```
+
 ## User Stories
 
 **MVP**
@@ -23,6 +31,7 @@ Whether you're a foodie, jet setter, techie, or just love sharing your life thro
 **Silver**
 - [ ] User Authentication with Facebook, Google, or Twitter
 - [ ] Allows Users to Update their snaps
+- [ ] Input relative location and automatically parses latitude and longitude
 
 **Gold**
 - [ ] Allow Google PolyLines to show user trip path between photos
@@ -35,3 +44,7 @@ Whether you're a foodie, jet setter, techie, or just love sharing your life thro
 * MEAN Stack (MongoDB, Express.js, Angular.js, Node.js)
 ![google_maps_api](./images/google_maps_api.png)
 * Google Maps API
+![bootstrap_logo](./images/bootstrap_logo.png)
+* Bootstrap
+![jquery_logo](./images/jquery_logopng)
+* Jquery
