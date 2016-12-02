@@ -4,7 +4,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h1>Add to the World Wide SnapMap!</h1>
+      <h1>Add to the World of SnapMap</h1>
       <form name="addPhoto" ng-submit="vm.onSubmitPhoto()" novalidate>
         <div class="form-group" ng-class="{ 'has-error': addPhoto.name.$invalid && !addPhoto.name.$pristine }">
           <label for="name">Full Name</label>
@@ -26,10 +26,10 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': addPhoto.blurb.$invalid && !addPhoto.blurb.$pristine }">
           <label for="blurb">Blurb</label>
-          <input type="text" name="blurb" class="form-control" id="blurb" placeholder="Enter a Brief Blurb" ng-model="vm.newMarker.desc" ng-minlength="5" required>
+          <input type="text" name="blurb" class="form-control" id="blurb" placeholder="Enter a Brief Description" ng-model="vm.newMarker.desc" ng-minlength="5" required>
           <p ng-show="addPhoto.blurb.$error.minlength" class="help-block">At least enter Hello! #Khoifish</p>
         </div>
-        <button type="submit" ng-disabled="addPhoto.$invalid" class="btn btn-default">Post!</button>
+        <button type="submit" ng-disabled="addPhoto.$invalid" class="btn btn-default">Post Your Picture!</button>
       </form>
     </div>
   </div>
