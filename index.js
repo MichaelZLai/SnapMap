@@ -37,7 +37,7 @@ app.use(express.static("public"));
 //SET VIEW ENGINE TO HANDLEBARS
 app.set("view engine", "hbs")
 
-//SET UP PORT AND LISTEN TO SERVER
+//SET UP PORT AND LISTEN TO SERVER --HEROKU WILL USE THE process.env.PORT
 app.set("port", process.env.PORT || 5000)
 app.listen(app.get("port"), _ => {
   console.log("Consequences....")
