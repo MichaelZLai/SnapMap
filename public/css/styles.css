@@ -44,3 +44,10 @@
   text-shadow: #444 0 1px 1px;
   border-radius: 5px;
 }
+.cameragirl{
+  margin-top:20px;
+  background: transparent url("https://s12.postimg.org/wxdep2c7h/girlholdingcamera.jpg") no-repeat  ;
+  height:550px;
+  width:100%;
+  border-radius: 5px;
+}
