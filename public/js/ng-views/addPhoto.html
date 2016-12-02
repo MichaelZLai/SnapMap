@@ -12,7 +12,7 @@
           <p ng-show="addPhoto.name.$invalid && !addPhoto.name.$pristine" class="help-block">Your name is required.</p>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : addPhoto.photourl.$invalid && !addPhoto.photourl.$pristine }">
-          <label for="photourl">Photo Url</label>
+          <label for="photourl">Photo Url <a class="coord" href="http://www.latlong.net/" target="_blank"><small>What is a Photo URL?</small></a></label>
           <input type="text" name="photourl" class="form-control" id="photourl" placeholder="Enter the Photo Url" ng-model="vm.newMarker.imageurl" ng-minlength="10" required>
           <p ng-show="addPhoto.photourl.$error.minlength" class="help-block">Please Enter a Valid Photo URL!</p>
         </div>
