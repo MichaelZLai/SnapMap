@@ -1,6 +1,11 @@
 # SnapMap
+Have an awesome picture you want to share...with Everybody?
 
-### User Stories
+Well, you come to the right place. With SnapMap, you can upload your photo with it's geolocation coordinates to a global interactive map where everyone can see, post, and play.
+
+Whether you're a foodie, jet setter, techie, or just love sharing your life through photos, SnapMap allows you to share your experience to the world.
+
+## User Stories
 
 **MVP**
 - [x] Upload a Photo
@@ -23,7 +28,7 @@
 - [ ] Allow users to map multiple trips with PolyLines
 
 
-### Technologies
+## Technologies
 ![mean-logo](./images/mean-logo.jpeg)
 * MEAN Stack (MongoDB, Express.js, Angular.js, Node.js)
 ![google_maps_api](./images/google_maps_api.png)
