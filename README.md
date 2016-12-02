@@ -46,5 +46,5 @@ npm install
 * Google Maps API
 ![bootstrap_logo](./images/bootstrap_logo.png)
 * Bootstrap
-![jquery_logo](./images/jquery_logopng)
+![jquery_logo](./images/jquery_logo.png)
 * Jquery
