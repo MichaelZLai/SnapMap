@@ -17,11 +17,11 @@
           <p ng-show="addPhoto.photourl.$error.minlength" class="help-block">Please Enter a Valid Photo URL!</p>
         </div>
         <div class="form-group">
-          <label for="latitude">Latitude <a class="coord" href="http://www.latlong.net/"><small>Find Latitude</small></a></label>
+          <label for="latitude">Latitude <a class="coord" href="http://www.latlong.net/" target="_blank"><small>Find Latitude</small></a></label>
           <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude" ng-model="vm.newMarker.lat" required>
         </div>
         <div class="form-group">
-          <label for="longitude">Longitude <a class="coord" href="http://www.latlong.net/"><small>Find Longitude</small></a></label>
+          <label for="longitude">Longitude <a class="coord" href="http://www.latlong.net/" target="_blank"><small>Find Longitude</small></a></label>
           <input type="text" class="form-control" id="longitude" placeholder="Enter Longitude" ng-model="vm.newMarker.lng" required>
         </div>
         <div class="form-group" ng-class="{ 'has-error': addPhoto.blurb.$invalid && !addPhoto.blurb.$pristine }">
