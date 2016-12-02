@@ -5,6 +5,8 @@ Well, you come to the right place. With SnapMap, you can upload your photo with 
 
 Whether you're a foodie, jet setter, techie, or just love sharing your life through photos, SnapMap allows you to share your experience to the world.
 
+![snapmapexample](./images/snapmapexample.png)
+
 ## User Stories
 
 **MVP**
